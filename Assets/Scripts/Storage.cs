@@ -80,6 +80,11 @@ public class Storage : InteractableObject
 
     public void MoveItemToOtherStorage(Item item)
     {
+        if (OtherStorage == null)
+        {
+            Debug.LogWarning("Not selected other storage\nitem used");
+            return;
+        }
         if (!_items.Contains(item)) return;
 
         if (_otherStorage.TryPutItem(item))
