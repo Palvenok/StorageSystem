@@ -14,6 +14,8 @@ public class CharController : MonoBehaviour
     [SerializeField] private float _gravity = -9.81f;
     [SerializeField] private float _jumpBoost = 1.1f;
     [SerializeField] private LayerMask _groundLayer = default;
+    [Space]
+    [SerializeField] private UIController _uiController;
 
     private float _cachedJumpBoost;
     private bool _charGrounded;
@@ -33,6 +35,18 @@ public class CharController : MonoBehaviour
 
     private void Update()
     {
+        if (_uiController.PlayerInventoryShown || _uiController.StorageInventoryShown)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            return;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         _charGrounded = IsGrounded();
         Move();
         Rotate();

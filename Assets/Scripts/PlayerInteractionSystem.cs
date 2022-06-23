@@ -4,18 +4,19 @@ using UnityEngine.Events;
 public class PlayerInteractionSystem : MonoBehaviour
 {
     [HideInInspector] public UnityEvent<GameObject> OnCanInteract;
+    [HideInInspector] public UnityEvent<bool> OnInventoryUsed;
 
     [SerializeField] private float _interactDistance;
     [SerializeField] private Camera _camera;
-    [SerializeField] private Transform _dropPoint;
     [SerializeField] private Storage _playerInventory;
+    [SerializeField] private UIController _uiController;
 
     private void Update()
     {
         var target = RayCast();
         OnCanInteract?.Invoke(target);
         if (Input.GetKeyDown(KeyCode.E)) Interact(target);
-        if (Input.GetKeyDown(KeyCode.Q)) DropFromInventory();
+        if (Input.GetKeyDown(KeyCode.Tab)) ChekInventory();
     }
 
     private void Interact(GameObject target)
@@ -23,11 +24,13 @@ public class PlayerInteractionSystem : MonoBehaviour
         if (target == null) return;
         if (target.TryGetComponent(out Storage storage))
         {
-            var list = storage.TakeItemsList();
-            foreach (var i in list)
-            {
-                Debug.Log(i.Name);
-            }
+            if (_uiController.StorageInventoryShown) return;
+
+            storage.OtherStorage = _playerInventory;
+            _playerInventory.OtherStorage = storage;
+            _uiController.ShowStorageInventory(storage);
+            _uiController.ShowPlayerInventory();
+
             return;
         }
         if (target.TryGetComponent(out Item item))
@@ -38,11 +41,17 @@ public class PlayerInteractionSystem : MonoBehaviour
         }
     }
 
-    private void DropFromInventory()
+    private void ChekInventory()
     {
-        int itemIndex = _playerInventory.ItemsCount - 1;
-        var item = _playerInventory.TakeItem(itemIndex);
-        item?.Drop(_dropPoint);
+        if (!_uiController.PlayerInventoryShown)
+            _uiController.ShowPlayerInventory();
+        else
+        {
+            _uiController.HidePlayerInventory();
+            _uiController.HideStorageInventory();
+
+            _playerInventory.OtherStorage = null;
+        }
     }
 
     private GameObject RayCast()

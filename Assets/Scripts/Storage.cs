@@ -1,24 +1,45 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Storage : InteractableObject
 {
+    [HideInInspector] public UnityEvent OnStorageUpdate;
+
+    [SerializeField] private string _name;
     [SerializeField] private float _weightLimit;
     [SerializeField] private bool _isClosed;
     [SerializeField] private int _key;
     [SerializeField] private List<Item> _items = new List<Item>();
+    [SerializeField] private Transform _dropPoint;
 
     private float _currentWeight;
+    private Storage _otherStorage;
 
     public bool IsClosed => _isClosed;
     public int ItemsCount => _items.Count;
+    public string Name => _name;
+    public float WeightLimit => _weightLimit;
+    public float CurrentWeight => _currentWeight;
+    public Storage OtherStorage
+    {
+        get => _otherStorage;
+        set => _otherStorage = value;
+    }
+
+    private void Start()
+    {
+        if (_items.Count != 0)
+            foreach (var item in _items)
+                _currentWeight += item.Weight;
+    }
 
     public void OpenStorage(int key)
     {
         if (key == _key) _isClosed = false;
     }
 
-    public List<Item> TakeItemsList()
+    public List<Item> GetItemsList()
     {
         if (!_isClosed)
             return _items;
@@ -32,17 +53,47 @@ public class Storage : InteractableObject
 
         _items.Add(item);
         _currentWeight += item.Weight;
+        OnStorageUpdate?.Invoke();
         return true;
     }
 
-    public Item TakeItem(int index)
+    public void TakeItem(Item item)
     {
-        if(_items.Count == 0) return null;
+        if (!_items.Contains(item)) return;
 
-        index = Mathf.Clamp(index, 0, _items.Count - 1);
-        
-        var item = _items[index];
-        _items.RemoveAt(index);
-        return item;
+        _currentWeight -= item.Weight;
+
+        _items.Remove(item);
+        OnStorageUpdate?.Invoke();
+    }
+
+    public void DropItem(Item item)
+    {
+        if (!_items.Contains(item)) return;
+
+        _currentWeight -= item.Weight;
+
+        item?.Drop(_dropPoint);
+        _items.Remove(item);
+        OnStorageUpdate?.Invoke();
+    }
+
+    public void MoveItemToOtherStorage(Item item)
+    {
+        if (!_items.Contains(item)) return;
+
+        if (_otherStorage.TryPutItem(item))
+            _items.Remove(item);
+        else
+            return;
+
+        _currentWeight -= item.Weight;
+
+        OnStorageUpdate?.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        OnStorageUpdate.RemoveAllListeners();
     }
 }
