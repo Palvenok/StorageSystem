@@ -6,6 +6,7 @@ public class Storage : InteractableObject
 {
     [HideInInspector] public UnityEvent OnStorageUpdate;
 
+    [Header("Storage Settings")]
     [SerializeField] private string _name;
     [SerializeField] private float _weightLimit;
     [SerializeField] private bool _isClosed;
@@ -78,6 +79,14 @@ public class Storage : InteractableObject
         OnStorageUpdate?.Invoke();
     }
 
+    public void DropAll()
+    {
+        foreach (var item in _items)
+            item.Drop(_dropPoint);
+        _items.Clear();
+        OnStorageUpdate?.Invoke();
+    }
+
     public void MoveItemToOtherStorage(Item item)
     {
         if (OtherStorage == null)
@@ -99,6 +108,7 @@ public class Storage : InteractableObject
 
     private void OnDestroy()
     {
+        DropAll();
         OnStorageUpdate.RemoveAllListeners();
     }
 }

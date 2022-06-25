@@ -6,15 +6,8 @@ public class Item : InteractableObject
     [SerializeField] private string _name;
     [SerializeField] private float _weight;
 
-    private Rigidbody _rb;
-
     public string Name => _name;
     public float Weight => _weight;
-
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody>();
-    }
 
     public void PickUp()
     {
@@ -26,7 +19,8 @@ public class Item : InteractableObject
         transform.position = dropPoint.position;
         transform.rotation = dropPoint.rotation;
 
+        transform.parent = null;
+
         gameObject.SetActive(true);
-        _rb.AddForce(transform.forward);
     }
 }

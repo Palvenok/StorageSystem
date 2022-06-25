@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5138314235177328323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.763, y: 0.851, z: 3.989}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60b78a1d9b00a841beed7490629b91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isMovable: 1
+  _materialsConfig: {fileID: 11400000, guid: e4257a980e1c0ab4b98bf4f3a6202bcf, type: 2}
   _name: Book
   _weight: 3
 --- !u!64 &6570151761845354022
