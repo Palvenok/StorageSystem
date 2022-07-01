@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5791367100115955341}
   - component: {fileID: 5791367100115955340}
   - component: {fileID: 5791367100115955569}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39bd4d8b337c3c248802b5f703bb96b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isMovable: 1
+  _isMovable: 0
   _materialsConfig: {fileID: 11400000, guid: e4257a980e1c0ab4b98bf4f3a6202bcf, type: 2}
   _useMeshCenter: 1
   _name: Posion

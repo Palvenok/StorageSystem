@@ -31,8 +31,13 @@ public class Storage : InteractableObject
     private void Start()
     {
         if (_items.Count != 0)
-            foreach (var item in _items)
-                _currentWeight += item.Weight;
+            for (int i = 0; i < _items.Count; i++)
+                {
+                    var newItem = Instantiate(_items[i]).GetComponent<Item>();
+                    _currentWeight += newItem.Weight;
+                    newItem.gameObject.SetActive(false);
+                    _items[i] = newItem;
+                }
     }
 
     public void OpenStorage(int key)
@@ -108,7 +113,6 @@ public class Storage : InteractableObject
 
     private void OnDestroy()
     {
-        DropAll();
         OnStorageUpdate.RemoveAllListeners();
     }
 }

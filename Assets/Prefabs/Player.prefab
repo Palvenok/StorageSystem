@@ -178,6 +178,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  _uiController: {fileID: 0}
 --- !u!114 &1847487245985975962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,10 +194,14 @@ MonoBehaviour:
   OnCanInteract:
     m_PersistentCalls:
       m_Calls: []
+  OnCanInteractPosition:
+    m_PersistentCalls:
+      m_Calls: []
   _interactDistance: 2.5
   _camera: {fileID: 1847487247084203492}
-  _dropPoint: {fileID: 3694446103932808043}
   _playerInventory: {fileID: 1847487245985975961}
+  _uiController: {fileID: 0}
+  _holdTime: 2
 --- !u!114 &1847487245985975961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,10 +214,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9f68f5312b880419235aab0b90b6da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isMovable: 0
+  _materialsConfig: {fileID: 0}
+  _useMeshCenter: 0
+  OnStorageUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  _name: Player
   _weightLimit: 50
   _isClosed: 0
   _key: 0
   _items: []
+  _dropPoint: {fileID: 3694446103932808043}
 --- !u!1 &1847487246713666604
 GameObject:
   m_ObjectHideFlags: 0

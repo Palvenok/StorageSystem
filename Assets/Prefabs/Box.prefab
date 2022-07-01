@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2437685276745433901}
   - component: {fileID: 2437685276745433900}
   - component: {fileID: 7682603739276174449}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3956311490312869576}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: Drop Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
