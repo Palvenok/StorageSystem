@@ -9,7 +9,7 @@ public class Bottle : Item, IFood
     public bool IsEmpty => _isEmpty;
     public float Energy => _energy;
 
-    public float Use()
+    public override float Use()
     {
         if (_isEmpty) return 0;
 

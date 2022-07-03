@@ -2,12 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Storage : InteractableObject
+public class Storage : Item
 {
     [HideInInspector] public UnityEvent OnStorageUpdate;
 
     [Header("Storage Settings")]
-    [SerializeField] private string _name;
     [SerializeField] private float _weightLimit;
     [SerializeField] private bool _isClosed;
     [SerializeField] private int _key;
@@ -19,7 +18,6 @@ public class Storage : InteractableObject
 
     public bool IsClosed => _isClosed;
     public int ItemsCount => _items.Count;
-    public string Name => _name;
     public float WeightLimit => _weightLimit;
     public float CurrentWeight => _currentWeight;
     public Storage OtherStorage
@@ -96,7 +94,7 @@ public class Storage : InteractableObject
     {
         if (OtherStorage == null)
         {
-            Debug.LogWarning("Not selected other storage\nitem used");
+            item.Use();
             return;
         }
         if (!_items.Contains(item)) return;

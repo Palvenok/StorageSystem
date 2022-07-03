@@ -60,6 +60,12 @@ public class PlayerInteractionSystem : MonoBehaviour
         Interact(target);
     }
 
+    public void PlaceItem(GameObject item)
+    {
+        _timer = _holdTime;
+        Interact(item);
+    }
+
     private void Interact(GameObject target)
     {
         if (target == null) return;

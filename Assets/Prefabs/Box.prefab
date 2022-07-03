@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2437685276745433903}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.437, y: 0.233, z: 4.0258746}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -116,10 +116,12 @@ MonoBehaviour:
   _isMovable: 1
   _materialsConfig: {fileID: 11400000, guid: e4257a980e1c0ab4b98bf4f3a6202bcf, type: 2}
   _useMeshCenter: 0
+  _name: Box
+  _weight: 30
+  _placeOnDrop: 1
   OnStorageUpdate:
     m_PersistentCalls:
       m_Calls: []
-  _name: Box
   _weightLimit: 100
   _isClosed: 0
   _key: 0
