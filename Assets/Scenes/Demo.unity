@@ -1995,12 +1995,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1847487245985975961, guid: 79b644243a0810f4393fc5870deef43b, type: 3}
       propertyPath: _items.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1847487245985975961, guid: 79b644243a0810f4393fc5870deef43b, type: 3}
       propertyPath: _items.Array.data[0]
       value: 
       objectReference: {fileID: 2437685276745433900, guid: b63a33ab5df0e564288f6eb240744def, type: 3}
+    - target: {fileID: 1847487245985975961, guid: 79b644243a0810f4393fc5870deef43b, type: 3}
+      propertyPath: _items.Array.data[1]
+      value: 
+      objectReference: {fileID: 2199906150217210433, guid: 108687bffeda1524fb1472ce595f5dd6, type: 3}
     - target: {fileID: 1847487245985975962, guid: 79b644243a0810f4393fc5870deef43b, type: 3}
       propertyPath: _holdTime
       value: 1

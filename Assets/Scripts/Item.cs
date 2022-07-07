@@ -29,6 +29,8 @@ public abstract class Item : InteractableObject
             return;
         }
 
+        if (dropPoint == null) return;
+
         transform.position = dropPoint.position;
         transform.rotation = dropPoint.rotation;
 
